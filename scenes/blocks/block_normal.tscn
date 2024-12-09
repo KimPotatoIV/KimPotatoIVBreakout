@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://di37i485f2cny"]
+
+[ext_resource type="Script" path="res://scenes/blocks/block_normal.gd" id="1_y8uif"]
+[ext_resource type="Texture2D" uid="uid://cusn3mliwb8nk" path="res://scenes/blocks/block_normal.png" id="2_0to0w"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_4nd5l"]
+size = Vector2(50, 16)
+
+[node name="BlockNormal" type="Area2D" groups=["Block"]]
+script = ExtResource("1_y8uif")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("2_0to0w")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_4nd5l")

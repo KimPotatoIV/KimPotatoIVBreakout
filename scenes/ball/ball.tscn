@@ -1,0 +1,42 @@
+[gd_scene load_steps=8 format=3 uid="uid://bq471ynj2rpes"]
+
+[ext_resource type="Script" path="res://scenes/ball/ball.gd" id="1_2emft"]
+[ext_resource type="Texture2D" uid="uid://cfxncwk7bvdya" path="res://scenes/ball/ball.png" id="1_22w1u"]
+[ext_resource type="Script" path="res://scenes/ball/gpu_particles_2d.gd" id="3_tfewx"]
+[ext_resource type="AudioStream" uid="uid://c8i45m2hbvwom" path="res://sounds/maou_se_sound16.wav" id="4_oal03"]
+[ext_resource type="AudioStream" uid="uid://gdpaoygrwigd" path="res://sounds/maou_se_sound06.wav" id="5_ereig"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_0fjxs"]
+radius = 5.0
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_nsyxf"]
+particle_flag_disable_z = true
+gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.215686)
+
+[node name="Ball" type="RigidBody2D" groups=["Ball"]]
+gravity_scale = 0.0
+lock_rotation = true
+contact_monitor = true
+max_contacts_reported = 10
+script = ExtResource("1_2emft")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_22w1u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_0fjxs")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_nsyxf")
+texture = ExtResource("1_22w1u")
+script = ExtResource("3_tfewx")
+
+[node name="AudioStreamPlayer2DBlock" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("4_oal03")
+volume_db = -20.0
+
+[node name="AudioStreamPlayer2DPaddle" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("5_ereig")
+volume_db = -20.0

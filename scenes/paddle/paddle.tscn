@@ -1,0 +1,36 @@
+[gd_scene load_steps=7 format=3 uid="uid://b20n42a0dewlc"]
+
+[ext_resource type="Script" path="res://scenes/paddle/paddle.gd" id="1_1anda"]
+[ext_resource type="Texture2D" uid="uid://bv7ikhogj3ior" path="res://scenes/paddle/paddle.png" id="1_knv7j"]
+[ext_resource type="Texture2D" uid="uid://c63fwuh1mbk3l" path="res://scenes/paddle/paddle_particle.png" id="3_uulnp"]
+[ext_resource type="Script" path="res://scenes/paddle/gpu_particles_2d.gd" id="4_unbd2"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_qttrp"]
+size = Vector2(50, 16)
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_sppui"]
+particle_flag_disable_z = true
+spread = 180.0
+initial_velocity_min = 10.0
+initial_velocity_max = 50.0
+gravity = Vector3(0, 98, 0)
+scale_min = 0.0
+color = Color(1, 0, 0, 1)
+
+[node name="Paddle" type="CharacterBody2D" groups=["Paddle"]]
+motion_mode = 1
+script = ExtResource("1_1anda")
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+texture = ExtResource("1_knv7j")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_qttrp")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+amount = 80
+process_material = SubResource("ParticleProcessMaterial_sppui")
+texture = ExtResource("3_uulnp")
+script = ExtResource("4_unbd2")
+metadata/_edit_group_ = true
