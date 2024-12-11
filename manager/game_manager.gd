@@ -26,6 +26,7 @@ func get_paddle_max_move_speed() -> float:
 	return paddle_max_move_speed
 
 ##################################################
+# Paddle 속도를 clamp 함수를 이용해 최대 및 최저 속도 사이로 제한 
 func set_paddle_move_speed(value: float) -> void:
 	paddle_move_speed = clamp(value, paddle_min_move_speed, paddle_max_move_speed)
 
@@ -42,6 +43,7 @@ func get_ball_max_move_speed() -> float:
 	return ball_max_move_speed
 
 ##################################################
+# Ball 속도를 clamp 함수를 이용해 최대 및 최저 속도 사이로 제한 
 func set_ball_move_speed(value: float) -> void:
 	ball_move_speed = clamp(value, ball_min_move_speed, ball_max_move_speed)
 
