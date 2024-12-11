@@ -9,7 +9,9 @@ var ball_move_speed: float = 100
 var ball_min_move_speed: float = 100
 var ball_max_move_speed: float = 300
 
-var game_score = 0
+var game_score: int = 0
+
+var game_over: bool = false
 
 ##################################################
 func get_paddle_move_speed() -> float:
@@ -25,12 +27,7 @@ func get_paddle_max_move_speed() -> float:
 
 ##################################################
 func set_paddle_move_speed(value: float) -> void:
-	paddle_move_speed = value
-	
-	if value <= paddle_min_move_speed:
-		paddle_move_speed = paddle_min_move_speed
-	elif value >= paddle_max_move_speed:
-		paddle_move_speed = paddle_max_move_speed
+	paddle_move_speed = clamp(value, paddle_min_move_speed, paddle_max_move_speed)
 
 ##################################################
 func get_ball_move_speed() -> float:
@@ -46,12 +43,7 @@ func get_ball_max_move_speed() -> float:
 
 ##################################################
 func set_ball_move_speed(value: float) -> void:
-	ball_move_speed = value
-	
-	if value <= ball_min_move_speed:
-		ball_move_speed = ball_min_move_speed
-	elif value >= ball_max_move_speed:
-		ball_move_speed = ball_max_move_speed
+	ball_move_speed = clamp(value, ball_min_move_speed, ball_max_move_speed)
 
 ##################################################
 func get_game_score() -> int:
@@ -60,3 +52,11 @@ func get_game_score() -> int:
 ##################################################
 func set_game_score(value: int):
 	game_score = value
+
+##################################################
+func get_game_over() -> bool:
+	return game_over
+
+##################################################
+func set_game_over(value: bool) -> void:
+	game_over = value

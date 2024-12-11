@@ -10,13 +10,11 @@ func _process(delta: float) -> void:
 
 ##################################################
 func update_particle_color() -> void:
-	var normalized_speed = (
-		GameManager.get_paddle_move_speed() -
-		GameManager.get_paddle_min_move_speed()
-		) / (
-		GameManager.get_paddle_max_move_speed() -
-		GameManager.get_paddle_min_move_speed()
-		)
+	var paddle_speed = GameManager.get_paddle_move_speed()
+	var min_speed = GameManager.get_paddle_min_move_speed()
+	var max_speed = GameManager.get_paddle_max_move_speed()
+	
+	var normalized_speed = (paddle_speed - min_speed) / (max_speed - min_speed)
 	var particle_color = Color(
 		lerp(1.0, 0.0, normalized_speed),
 		lerp(0.0, 1.0, normalized_speed),

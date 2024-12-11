@@ -11,8 +11,14 @@ var start_y: float = 8
 var rows: int = 10
 var cols: int = 10
 
+var paddle_block_texture: Texture2D
+var ball_block_texture: Texture2D
+
 ##################################################
 func _ready() -> void:
+	paddle_block_texture = load("res://scenes/blocks/block_paddle.png")
+	ball_block_texture = load("res://scenes/blocks/block_ball.png")
+	
 	for row in range(rows):
 		for col in range(cols): 
 			var block_instance: Node2D = block_scene.instantiate()
@@ -21,10 +27,12 @@ func _ready() -> void:
 			block_instance.global_position = Vector2(position_x, position_y)
 			block_instance.item_type = randi_range(0, 8)
 			
-			var sprite_node = block_instance.get_node("Sprite2D") as Sprite2D
-			if block_instance.item_type in [3, 4, 5]:
-				sprite_node.texture = load("res://scenes/blocks/block_paddle.png")
-			elif block_instance.item_type in [6, 7, 8]:
-				sprite_node.texture = load("res://scenes/blocks/block_ball.png")
+			var sprite_node: Sprite2D = block_instance.get_node("Sprite2D") as Sprite2D
 			
+			match block_instance.item_type:
+				3, 4, 5:
+					sprite_node.texture = paddle_block_texture
+				6, 7, 8:
+					sprite_node.texture = ball_block_texture
+					
 			add_child(block_instance)
